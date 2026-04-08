@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run a simple script
-        run: echo "Hello, im aruna!"
+        run: echo "Hello, im sri!"
 
       - name: List files
         run: ls -la
