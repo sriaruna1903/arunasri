@@ -17,7 +17,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run a simple script
-        run: echo "Hello, im sri!"
+        run: echo "Hello, I'm Sri!"
 
-      - name: List files
+      - name: List all files in repo
         run: ls -la
+
+      - name: Show files changed in this commit
+        run: |
+          echo "Changed files in this push:"
+          git fetch --depth=2
+          git diff --name-only HEAD~1 HEAD
