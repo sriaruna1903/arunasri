@@ -1,4 +1,4 @@
-name: githubactionsworkflow
+name: Auto Show Repository Changes
 
 on:
   push:
@@ -9,21 +9,29 @@ on:
       - main
 
 jobs:
-  build:
+  detect-changes:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run a simple script
-        run: echo "Hello, I'm Sri!"
+      # Step 2: Greeting
+      - name: Greeting
+        run: echo "Hello! Automatically listing changes in this push/PR..."
 
-      - name: List all files in repo
+      # Step 3: List all files in the repository
+      - name: List all repository files
         run: ls -la
 
-      - name: Show files changed in this commit
+      # Step 4: Show changed files automatically
+      - name: Show changed files
         run: |
-          echo "Changed files in this push:"
+          echo "Changed files in this push/PR:"
           git fetch --depth=2
-          git diff --name-only HEAD~1 HEAD
+          git diff --name-status HEAD~1 HEAD || echo "No changes detected"
+
+      # Step 5: Show detailed changes for each file
+      - name: Show detailed diff
+        run: git diff HEAD~1 HEAD || echo "No detailed changes available"
