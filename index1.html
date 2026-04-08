@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Recommender</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+    h1 {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    label {
+        font-weight: bold;
+        margin-top: 10px;
+        display: block;
+    }
+    select, button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .result {
+        margin-top: 15px;
+        padding: 10px;
+        background: #eef;
+        border-radius: 6px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Course Recommender</h1>
+    <label for="category">Your Category</label>
+    <select id="category">
+        <option value="">-- Select --</option>
+        <option value="science">Science</option>
+        <option value="commerce">Commerce</option>
+        <option value="arts">Arts</option>
+    </select>
+
+    <label for="past">Past Higher Secondary Courses</label>
+    <select id="past">
+        <option value="">-- Select --</option>
+        <option value="maths">Mathematics</option>
+        <option value="biology">Biology</option>
+        <option value="accounting">Accounting</option>
+        <option value="history">History</option>
+    </select>
+
+    <label for="goal">Your Goal</label>
+    <select id="goal">
+        <option value="">-- Select --</option>
+        <option value="engineering">Become an Engineer</option>
+        <option value="doctor">Become a Doctor</option>
+        <option value="business">Start a Business</option>
+        <option value="artist">Become an Artist</option>
+    </select>
+
+    <button onclick="recommendCourse()">Get Recommendation</button>
+
+    <div id="output" class="result" style="display:none;"></div>
+</div>
+
+<script>
+function recommendCourse() {
+    const category = document.getElementById("category").value;
+    const past = document.getElementById("past").value;
+    const goal = document.getElementById("goal").value;
+    let recommendation = "";
+
+    if (category === "science" && past === "maths" && goal === "engineering") {
+        recommendation = "We recommend: B.Tech in Computer Science or Mechanical Engineering.";
+    } else if (category === "science" && past === "biology" && goal === "doctor") {
+        recommendation = "We recommend: MBBS or B.Sc in Biotechnology.";
+    } else if (category === "commerce" && past === "accounting" && goal === "business") {
+        recommendation = "We recommend: B.Com or BBA in Entrepreneurship.";
+    } else if (category === "arts" && past === "history" && goal === "artist") {
+        recommendation = "We recommend: BA in Fine Arts or History.";
+    } else {
+        recommendation = "We suggest exploring interdisciplinary programs based on your interests.";
+    }
+
+    const outputDiv = document.getElementById("output");
+    outputDiv.style.display = "block";
+    outputDiv.innerText = recommendation;
+}
+</script>
+
+</body>
+</html>
